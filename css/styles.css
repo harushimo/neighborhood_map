@@ -1,0 +1,10 @@
+/*HTML Elements */
+body {
+  font-family: 'Indie Flower', cursive;
+}
+
+#map {
+  width: 100%;
+  height: 400px;
+  background-color: grey;
+}
