@@ -7,9 +7,9 @@ var locations = ko.observableArray();
 var markers = [];
 
 // Loading Locations Data Dynamically
-function chicagoListModel()
-  var locationJSON = data.locations;
-  $.getJSON("/some/url", function(data) {
+function chicagoListModel(){
+  $.getJSON("/some/url", function(data){
+    var locationJSON = data.locations;
     for(var i = 0; i < locationJSON.length; i++){
       locations.push(data.i);
     };
@@ -19,7 +19,7 @@ function chicagoListModel()
 
 function initMap() {
   // Initialize Google maps
-  var chicago = {lat: 41.8781136, lng: -87.6297982};
+  var chicago = {lat: 41.8781136, lng: -87.6297982}
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
     center: chicago
