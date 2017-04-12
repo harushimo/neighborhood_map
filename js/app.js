@@ -35,18 +35,25 @@ function initMap() {
 
   //Create Map Marker array
   for(var i = 0; i < chicagoLocations.length; i++){
-    var position = chicagoLocations[i].locations;
+    var position = chicagoLocations[i].position;
     var title = chicagoLocations[i].name;
 
     // Loops and creates markers for each object in the array
     markers = new google.maps.Marker ({
-      position,
+      position: position,
       map: map,
       title: title,
       animation: google.maps.Animation.DROP,
       id: i
     });
+    // Push the markers
+    markers.push(markers);
   }
+  // Test Marker for Chicago Center Point
+  // markers = new google.maps.Marker ({
+  //   position: chicago,
+  //   map: map
+  // });
 }
 
 // // Wikipedia API
