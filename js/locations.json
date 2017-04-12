@@ -1,0 +1,33 @@
+{
+  "Locations": [
+    {
+      "name": "Solider Field",
+      "address": "1410 Museum Campus Dr",
+      "city": "Chicago",
+      "state": "IL",
+      "zipcode":"60605"
+    },
+    {
+      "name": "Art Institute",
+      "address": "111 S Michigan Ave",
+      "city": "Chicago",
+      "state": "IL",
+      "zipcode": "60603"
+    },
+    {
+      "name": "Museum of Science and Industry",
+      "address": "5700 S Lake Shore Dr",
+      "city": "Chicago",
+      "state": "IL",
+      "zipcode": "60637"
+    },
+    {
+      "name": "Wrigley Field",
+      "address": "1060 W Addison St",
+      "city": "Chicago",
+      "state": "IL",
+      "zipcode": "60613"
+    },
+
+  ]
+}
