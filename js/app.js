@@ -17,6 +17,7 @@ function chicagoListModel(){
 }
 
 
+// Initialize the Google Map
 function initMap() {
   // Initialize Google maps
   var chicago = {lat: 41.8781136, lng: -87.6297982}
@@ -30,8 +31,17 @@ function initMap() {
   var largeInfoWindow = new google.maps.InfoWindow();
   var bounds = new google.maps.LatLngBounds();
 
+
+  // Test Marker for Chicago Center Point
+  markers = new google.maps.Marker ({
+    position: chicago,
+    map: map
+  });
+}
+
+function createMarker(){
   // Creating Initial Map markers array
-  var chicagoLocations = locations
+  var chicagoLocations = locations;
 
   //Create Map Marker array
   for(var i = 0; i < chicagoLocations.length; i++){
@@ -43,16 +53,12 @@ function initMap() {
       position: position,
       map: map,
       title: title,
+      animation: google.maps.Animation.DROP,
       id: i
     });
     // Push the markers
     markers.push(markers);
   }
-  // Test Marker for Chicago Center Point
-  // markers = new google.maps.Marker ({
-  //   position: chicago,
-  //   map: map
-  // });
 }
 
 // // Wikipedia API

@@ -2,7 +2,7 @@
   "Locations": [
     {
       "name": "Solider Field",
-      "position":{lat:41.8623132, lng:-87.6188824},
+      "position":{"lat":41.8623132, "lng":-87.6188824},
       "address": "1410 Museum Campus Dr",
       "city": "Chicago",
       "state": "IL",
@@ -10,7 +10,7 @@
     },
     {
       "name": "Art Institute",
-      "position":{lat:41.8795845, lng:-87.6259073},
+      "position":{"lat":41.8795845, "lng":-87.6259073},
       "address": "111 S Michigan Ave",
       "city": "Chicago",
       "state": "IL",
@@ -18,7 +18,7 @@
     },
     {
       "name": "Museum of Science and Industry",
-      "position":{lat:41.7905726, lng:-87.6188824},
+      "position":{"lat":41.7905726,"lng":-87.6188824},
       "address": "5700 S Lake Shore Dr",
       "city": "Chicago",
       "state": "IL",
@@ -26,7 +26,7 @@
     },
     {
       "name": "Wrigley Field",
-      "position":{lat:41.9484384, lng:-87.6575267},
+      "position":{"lat":41.9484384, "lng":-87.6575267},
       "address": "1060 W Addison St",
       "city": "Chicago",
       "state": "IL",
@@ -34,7 +34,7 @@
     },
     {
       "name": "Kohl Childrens Museum",
-      "position":{lat:42.09376, lng:-87.828103,},
+      "position":{"lat":42.09376, "lng":-87.828103},
       "address": "2100 Patriot Blvd",
       "city": "Glenview",
       "state": "IL",
