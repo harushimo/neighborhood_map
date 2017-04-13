@@ -43,7 +43,6 @@ function initMap() {
       position: position,
       map: map,
       title: title,
-      animation: google.maps.Animation.DROP,
       id: i
     });
     // Push the markers
