@@ -8,8 +8,9 @@ var markers = [];
 
 // Loading Locations Data Dynamically
 function chicagoListModel(){
-  $.getJSON("/some/url", function(data){
-    var locationJSON = data.locations;
+  $.getJSON("locations.json", function(locations) {
+    var locationJSON = locations.locations;
+    console.log(locationJSON);
     for(var i = 0; i < locationJSON.length; i++){
       locations.push(data.i);
     };
@@ -28,25 +29,25 @@ function initMap() {
 
 
   // Create the infowindow
-  var largeInfoWindow = new google.maps.InfoWindow();
-  var bounds = new google.maps.LatLngBounds();
+  // var largeInfoWindow = new google.maps.InfoWindow();
+  // var bounds = new google.maps.LatLngBounds();
 
 
-  // Test Marker for Chicago Center Point
-  markers = new google.maps.Marker ({
-    position: chicago,
-    map: map
-  });
+  // // Test Marker for Chicago Center Point
+  // markers = new google.maps.Marker ({
+  //   position: chicago,
+  //   map: map
+  // });
 }
 
 function createMarker(){
-  // Creating Initial Map markers array
-  var chicagoLocations = locations;
+
+  chicagoListModel();
 
   //Create Map Marker array
-  for(var i = 0; i < chicagoLocations.length; i++){
-    var position = chicagoLocations[i].position;
-    var title = chicagoLocations[i].name;
+  for(var i = 0; i < locations.length; i++){
+    var position = locations[i].position;
+    var title = locations[i].name;
 
     // Loops and creates markers for each object in the array
     markers = new google.maps.Marker ({
