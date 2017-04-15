@@ -74,6 +74,10 @@ var bounds = new google.maps.LatLngBounds();
     // Push the markers
     markers.push(marker);
   }
+
+function popluateInfoWindow(marker, largeInfoWindow){
+  
+}
   // //Test Marker for Chicago Center Point
   // markers = new google.maps.Marker ({
   //   position: chicago,

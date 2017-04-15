@@ -5,6 +5,13 @@ body {
   height: 100%;
 }
 
+input {
+  font-size: 12px;
+}
+
+/* Classes */
+
+/*ID*/
 #map {
   width: 100%;
   height: 100%;
