@@ -14,10 +14,19 @@
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
-    <!-- <div class="search-box">
-      <input type="button" name="name" value="">
-
+    <!-- <div class=" col-md-6 search">
+      <div class="form-group">
+        <div class="icon-addon addon-md">
+          <input type="text" placeholder="Search for Chicago Favorite Places" class="form-control" id="search">
+          <label for="email" class="glyphicon glyphicon-search" rel="tooltip" title="search"></label>
+        </div>
+      </div>
     </div> -->
+    <ul data-bind = "foreach: favoritePlaces">
+      <li> Places
+        <span data-bind="text = $data"></span>
+      </li>
+    </ul>
     <div id="map"></div>
     <!-- jquery CDN -->
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>

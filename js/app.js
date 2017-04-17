@@ -21,15 +21,10 @@ function initMap() {
   var bounds = new google.maps.LatLngBounds();
 
   chicagoListModel();
-  // createMarker(locations);
   // Create the infowindow
 
 
-  // // Test Marker for Chicago Center Point
-  // markers = new google.maps.Marker ({
-  //   position: chicago,
-  //   map: map
-  // });
+;
 }
 // Loading Locations Data Dynamically
 function chicagoListModel(){
@@ -64,6 +59,11 @@ function createMarker(locations){
 }
 
 var viewModel = function() {
+  var self = this;
+  self.favoritePlaces = ko.observableArray()
+  locations.forEach(function(){
+    self.favoritePlaces.push()
+  })
 };
 viewModel.favoritePlaces = ko.observableArray();
 ko.applyBindings(viewModel);
