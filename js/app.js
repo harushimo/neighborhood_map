@@ -7,6 +7,7 @@ var markers = [];
 
 // Handling the location array
 var locations = [];
+var viewModel;
 
 
 // Initialize the Google Map
@@ -30,7 +31,7 @@ function initMap() {
 function chicagoListModel(favoritePlaces){
   $.getJSON("../locations.json", function(data) {
     var locationJSON = data.locations;
-    createMarker(locationJSON);
+    // createMarker(locationJSON);
     for(var i = 0; i < locationJSON.length; i++){
       favoritePlaces.push(locationJSON[i]);
     };
@@ -39,24 +40,24 @@ function chicagoListModel(favoritePlaces){
 
 
 
-function createMarker(locations){
-  //Create Map Marker array
-  for(var i = 0; i < locations.length; i++){
-    var position = locations[i].position;
-    var title = locations[i].name;
-
-    // Loops and creates markers for each object in the array
-    marker = new google.maps.Marker ({
-      position: position,
-      map: map,
-      title: title,
-      animation: google.maps.Animation.DROP,
-      id: i
-    });
-    // Push the markers
-    markers.push(marker);
-  }
-}
+// function createMarker(locations){
+//   //Create Map Marker array
+//   for(var i = 0; i < locations.length; i++){
+//     var position = locations[i].position;
+//     var title = locations[i].name;
+//
+//     // Loops and creates markers for each object in the array
+//     marker = new google.maps.Marker ({
+//       position: position,
+//       map: map,
+//       title: title,
+//       animation: google.maps.Animation.DROP,
+//       id: i
+//     });
+//     // Push the markers
+//     markers.push(marker);
+//   }
+// }
 
 //Model
 var LocationModel = function(location) {
@@ -69,14 +70,13 @@ var LocationModel = function(location) {
   self.state = ko.observable(location.state);
   self.zipcode = ko.observable(location.zip);
 
-  // // Create single marker
-  // self.marker = new google.maps.Marker ({
-  //   position: self.position,
-  //   map: map,
-  //   title: self.title,
-  //   animation: google.maps.Animation.DROP,
-  //   id: i
-  // });
+  // Create single marker
+  self.marker = new google.maps.Marker ({
+    position: self.position,
+    map: map,
+    title: self.title,
+    animation: google.maps.Animation.DROP,
+  });
 };
 
 // ViewModel
