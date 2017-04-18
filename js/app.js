@@ -21,7 +21,7 @@ function initMap() {
   var largeInfoWindow = new google.maps.InfoWindow();
   var bounds = new google.maps.LatLngBounds();
 
-  chicagoListModel();
+  // chicagoListModel();
   // Create the infowindow
 
 ;
@@ -32,7 +32,7 @@ function chicagoListModel(favoritePlaces){
     var locationJSON = data.locations;
     createMarker(locationJSON);
     for(var i = 0; i < locationJSON.length; i++){
-      viewModel.favoritePlaces.push(locationJSON[i]);
+      favoritePlaces.push(locationJSON[i]);
     };
   });
 }
@@ -69,29 +69,26 @@ var LocationModel = function(location) {
   self.state = ko.observable(location.state);
   self.zipcode = ko.observable(location.zip);
 
-  // Create single marker
-  self.marker = new google.maps.Marker ({
-    position: self.position,
-    map: map,
-    title: self.title,
-    animation: google.maps.Animation.DROP,
-    id: i
-  });
-
-}
+  // // Create single marker
+  // self.marker = new google.maps.Marker ({
+  //   position: self.position,
+  //   map: map,
+  //   title: self.title,
+  //   animation: google.maps.Animation.DROP,
+  //   id: i
+  // });
+};
 
 // ViewModel
-var ViewModel = function() {
+var ViewModel = function(LocationModel) {
   var self = this;
   self.favoritePlaces = ko.observableArray();
 
   chicagoListModel(self.favoritePlaces);
 
-  locations.forEach(function(locationModel){
-    self.favoritePlaces.push(new locationModel(locationsJSON[i]));
-  })
 };
 
+// Instiate the viewModel
 var viewModel = new ViewModel();
 ko.applyBindings(viewModel);
 // // Wikipedia API
