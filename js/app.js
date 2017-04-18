@@ -38,8 +38,8 @@ function chicagoListModel(){
 }
 
 
+
 function createMarker(locations){
-  // console.log("Inside createMarker function");
   //Create Map Marker array
   for(var i = 0; i < locations.length; i++){
     var position = locations[i].position;
@@ -58,15 +58,29 @@ function createMarker(locations){
   }
 }
 
+//Model
+var locationModel = function() {
+  var self = this;
+
+  self.title = ko.observable(location.name);
+  self.position = ko.observable(location.position);
+  self.address = ko.observable(location.address);
+  self.city = ko.observable(location.city);
+  self.state = ko.observable(location.state);
+  self.zipcode = ko.observable(location.zip);
+}
+
+// ViewModel
 var viewModel = function() {
   var self = this;
-  self.favoritePlaces = ko.observableArray()
+
   locations.forEach(function(){
     self.favoritePlaces.push()
   })
 };
+
 viewModel.favoritePlaces = ko.observableArray();
-ko.applyBindings(viewModel);
+ko.applyBindings(new viewModel());
 // // Wikipedia API
 // var wikiUrl = 'https://en.wikipedia.org/w/api.php?'
 // $.ajax({})
