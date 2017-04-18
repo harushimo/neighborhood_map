@@ -1,8 +1,9 @@
 'use strict';
 
-//Handles Locations Markers on the map
-var markers = [];
+//Initialize Variables for maps
 var map;
+var marker;
+var markers = [];
 
 // Handling the location array
 var locations = [];
@@ -22,7 +23,6 @@ function initMap() {
 
   chicagoListModel();
   // Create the infowindow
-
 
 ;
 }
@@ -46,7 +46,7 @@ function createMarker(locations){
     var title = locations[i].name;
 
     // Loops and creates markers for each object in the array
-    var marker = new google.maps.Marker ({
+    marker = new google.maps.Marker ({
       position: position,
       map: map,
       title: title,
@@ -68,14 +68,25 @@ var locationModel = function() {
   self.city = ko.observable(location.city);
   self.state = ko.observable(location.state);
   self.zipcode = ko.observable(location.zip);
+
+  // Create single marker
+  self.marker = new google.maps.Marker ({
+    position: self.position,
+    map: map,
+    title: self.title,
+    animation: google.maps.Animation.DROP,
+    id: i
+  });
+
 }
 
 // ViewModel
 var viewModel = function() {
   var self = this;
+  self.favoritePlaces = ko.observableArray(locations)
 
-  locations.forEach(function(){
-    self.favoritePlaces.push()
+  locations.forEach(function(locationModel){
+    self.favoritePlaces.push(locationModel)
   })
 };
 
