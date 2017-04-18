@@ -27,7 +27,7 @@ function initMap() {
 ;
 }
 // Loading Locations Data Dynamically
-function chicagoListModel(){
+function chicagoListModel(favoritePlaces){
   $.getJSON("../locations.json", function(data) {
     var locationJSON = data.locations;
     createMarker(locationJSON);
@@ -59,7 +59,7 @@ function createMarker(locations){
 }
 
 //Model
-var locationModel = function() {
+var LocationModel = function(location) {
   var self = this;
 
   self.title = ko.observable(location.name);
@@ -81,17 +81,19 @@ var locationModel = function() {
 }
 
 // ViewModel
-var viewModel = function() {
+var ViewModel = function() {
   var self = this;
-  self.favoritePlaces = ko.observableArray(locations)
+  self.favoritePlaces = ko.observableArray();
+
+  chicagoListModel(self.favoritePlaces);
 
   locations.forEach(function(locationModel){
-    self.favoritePlaces.push(locationModel)
+    self.favoritePlaces.push(new locationModel(locationsJSON[i]));
   })
 };
 
-viewModel.favoritePlaces = ko.observableArray();
-ko.applyBindings(new viewModel());
+var viewModel = new ViewModel();
+ko.applyBindings(viewModel);
 // // Wikipedia API
 // var wikiUrl = 'https://en.wikipedia.org/w/api.php?'
 // $.ajax({})
