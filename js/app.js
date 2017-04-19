@@ -25,15 +25,20 @@ function initMap() {
   // chicagoListModel();
   // Create the infowindow
 
-;
+  // Instiate the viewModel
+  viewModel = new ViewModel();
+  ko.applyBindings(viewModel);
+
+
 }
 // Loading Locations Data Dynamically
 function chicagoListModel(favoritePlaces){
   $.getJSON("../locations.json", function(data) {
     var locationJSON = data.locations;
+    console.log(locationJSON)
     // createMarker(locationJSON);
     for(var i = 0; i < locationJSON.length; i++){
-      favoritePlaces.push(locationJSON[i]);
+      viewModel.favoritePlaces.push(new LocationModel(locationJSON[i]));
     };
   });
 }
@@ -59,16 +64,16 @@ function chicagoListModel(favoritePlaces){
 //   }
 // }
 
-//Model
+//Model - LocationModel constructor funtion
 var LocationModel = function(location) {
   var self = this;
 
-  self.title = ko.observable(location.name);
-  self.position = ko.observable(location.position);
-  self.address = ko.observable(location.address);
-  self.city = ko.observable(location.city);
-  self.state = ko.observable(location.state);
-  self.zipcode = ko.observable(location.zip);
+  self.title = location.name;
+  self.position = location.position;
+  self.address = location.address;
+  self.city = location.city;
+  self.state = location.state;
+  self.zipcode = location.zip;
 
   // Create single marker
   self.marker = new google.maps.Marker ({
@@ -77,6 +82,8 @@ var LocationModel = function(location) {
     title: self.title,
     animation: google.maps.Animation.DROP,
   });
+
+  self.marker.setMap(map)
 };
 
 // ViewModel
@@ -88,9 +95,7 @@ var ViewModel = function(LocationModel) {
 
 };
 
-// Instiate the viewModel
-var viewModel = new ViewModel();
-ko.applyBindings(viewModel);
+
 // // Wikipedia API
 // var wikiUrl = 'https://en.wikipedia.org/w/api.php?'
 // $.ajax({})
