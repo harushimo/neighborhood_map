@@ -7,12 +7,16 @@ var markers = [];
 
 // Handling the location array
 var locations = [];
+// Other Variables
 var viewModel;
+var contentString;
+// var largeInfoWindow;
 
 
 // Initialize the Google Map
 function initMap() {
   // Initialize Google maps
+  console.log("initMap");
   var chicago = {lat: 41.8781136, lng: -87.6297982}
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
@@ -22,12 +26,8 @@ function initMap() {
   var largeInfoWindow = new google.maps.InfoWindow();
   var bounds = new google.maps.LatLngBounds();
 
-  // chicagoListModel();
-  // Create the infowindow
+  viewModel.google(!!window.google); //true
 
-  // Instiate the viewModel
-  viewModel = new ViewModel();
-  ko.applyBindings(viewModel);
 
 
 }
@@ -35,10 +35,10 @@ function initMap() {
 function chicagoListModel(favoritePlaces){
   $.getJSON("../locations.json", function(data) {
     var locationJSON = data.locations;
-    console.log(locationJSON)
+    console.log(locationJSON);
     // createMarker(locationJSON);
     for(var i = 0; i < locationJSON.length; i++){
-      viewModel.favoritePlaces.push(new LocationModel(locationJSON[i]));
+      viewModel.favoritePlaces.push(new LocationModel(locationJSON[i], viewModel));
     };
   });
 }
@@ -65,7 +65,7 @@ function chicagoListModel(favoritePlaces){
 // }
 
 //Model - LocationModel constructor funtion
-var LocationModel = function(location) {
+var LocationModel = function(location, viewModel) {
   var self = this;
 
   self.title = location.name;
@@ -75,25 +75,43 @@ var LocationModel = function(location) {
   self.state = location.state;
   self.zipcode = location.zip;
 
-  // Create single marker
-  self.marker = new google.maps.Marker ({
-    position: self.position,
-    map: map,
-    title: self.title,
-    animation: google.maps.Animation.DROP,
+  self.markerCreation = ko.computed(function(){
+    if (viewModel.google()){
+      self.marker = new google.maps.Marker ({
+        position: self.position,
+        map: map,
+        title: self.title,
+        animation: google.maps.Animation.DROP,
+      });
+    }
+  })
+
+  //Create InfoWindow
+  self.contentString = '<div><i>'+ self.title + '</i></div>' +
+                       '<div>'+ self.address + '</div>' +
+                       '<div>'+ self.city + '</div>' +
+                       '<div>'+ self.state, self.zipcode + '</div>';
+
+  largeInfoWindow = new google.map.InfoWindow({
+    content: self.contentString()
   });
 
-  self.marker.setMap(map)
+  // self.marker.setMap(map)
 };
 
 // ViewModel
 var ViewModel = function(LocationModel) {
+  console.log("Instiate ViewModel");
   var self = this;
   self.favoritePlaces = ko.observableArray();
+  self.google = ko.observable(!!window.google);  //Sets the Google Window to False
 
   chicagoListModel(self.favoritePlaces);
 
 };
+// Instiate the viewModel
+viewModel = new ViewModel();
+ko.applyBindings(viewModel);
 
 
 // // Wikipedia API
