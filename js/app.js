@@ -23,12 +23,10 @@ function initMap() {
     center: chicago
   });
 
-  var largeInfoWindow = new google.maps.InfoWindow();
+  // var largeInfoWindow = new google.maps.InfoWindow();
   var bounds = new google.maps.LatLngBounds();
 
   viewModel.google(!!window.google); //true
-
-
 
 }
 // Loading Locations Data Dynamically
@@ -83,18 +81,24 @@ var LocationModel = function(location, viewModel) {
         title: self.title,
         animation: google.maps.Animation.DROP,
       });
+      self.marker.addListener('click', function(){
+        // console.log('clicked');
+        console.log(this.title); //Keyword this is the marker here.
+        //Set content with InfoWindow
+        // viewModel.largeInfoWindow.setContent
+        // Open LargeInfoWindow
+      });
     }
   })
-
   //Create InfoWindow
   self.contentString = '<div><i>'+ self.title + '</i></div>' +
                        '<div>'+ self.address + '</div>' +
                        '<div>'+ self.city + '</div>' +
-                       '<div>'+ self.state, self.zipcode + '</div>';
+                       '<div>'+ self.state, self.zipcode + '</div>'
 
-  largeInfoWindow = new google.map.InfoWindow({
-    content: self.contentString()
-  });
+
+
+
 
   // self.marker.setMap(map)
 };
@@ -107,6 +111,14 @@ var ViewModel = function(LocationModel) {
   self.google = ko.observable(!!window.google);  //Sets the Google Window to False
 
   chicagoListModel(self.favoritePlaces);
+
+  self.infoWindowCreation = ko.computed(function(){
+    if (self.google()){
+      self.largeInfoWindow = new google.maps.InfoWindow();
+    }
+  });
+
+
 
 };
 // Instiate the viewModel
