@@ -73,8 +73,17 @@ var LocationModel = function(location, viewModel) {
   self.state = location.state;
   self.zipcode = location.zip;
 
+
   self.markerCreation = ko.computed(function(){
     if (viewModel.google()){
+      //Create contentString for the InfoWindow
+      self.contentString = ko.computed(function(){
+        return '<div><i>'+ self.title + '</i></div>' +
+        '<div>'+ self.address + '</div>' +
+        '<div>'+ self.city + '</div>' +
+        '<div>'+ self.state, self.zipcode + '</div>'
+      });
+
       self.marker = new google.maps.Marker ({
         position: self.position,
         map: map,
@@ -87,17 +96,10 @@ var LocationModel = function(location, viewModel) {
         //Set content with InfoWindow
         viewModel.largeInfoWindow.setContent(self.contentString());
         // Open LargeInfoWindow
-        viewModel.largeInfoWindow.open()
+        viewModel.largeInfoWindow.open(map, self.marker);
       });
     }
   })
-  //Create contentString for the InfoWindow
-  self.contentString = '<div><i>'+ self.title + '</i></div>' +
-                       '<div>'+ self.address + '</div>' +
-                       '<div>'+ self.city + '</div>' +
-                       '<div>'+ self.state, self.zipcode + '</div>'
-
-
 
 
 
