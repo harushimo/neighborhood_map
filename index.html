@@ -22,11 +22,12 @@
         </div>
       </div>
     </div> -->
-    <ul data-bind = "foreach: favoritePlaces">
-      <li> Places
-        <span data-bind="text = $data"></span>
-      </li>
-    </ul>
+
+      <ul class="dropdown"data-bind = "foreach: favoritePlaces">
+        <li> Places
+          <span data-bind="text = $data"></span>
+        </li>
+      </ul>
     <div id="map"></div>
     <!-- jquery CDN -->
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>

@@ -41,27 +41,6 @@ function chicagoListModel(favoritePlaces){
   });
 }
 
-
-
-// function createMarker(locations){
-//   //Create Map Marker array
-//   for(var i = 0; i < locations.length; i++){
-//     var position = locations[i].position;
-//     var title = locations[i].name;
-//
-//     // Loops and creates markers for each object in the array
-//     marker = new google.maps.Marker ({
-//       position: position,
-//       map: map,
-//       title: title,
-//       animation: google.maps.Animation.DROP,
-//       id: i
-//     });
-//     // Push the markers
-//     markers.push(marker);
-//   }
-// }
-
 //Model - LocationModel constructor funtion
 var LocationModel = function(location, viewModel) {
   var self = this;
@@ -71,24 +50,23 @@ var LocationModel = function(location, viewModel) {
   self.address = location.address;
   self.city = location.city;
   self.state = location.state;
-  self.zipcode = location.zip;
+  self.zipcode = location.zipcode;
 
 
   self.markerCreation = ko.computed(function(){
     if (viewModel.google()){
-      //Create contentString for the InfoWindow
-      self.contentString = ko.computed(function(){
-        return '<div><i>'+ self.title + '</i></div>' +
-        '<div>'+ self.address + '</div>' +
-        '<div>'+ self.city + '</div>' +
-        '<div>'+ self.state, self.zipcode + '</div>'
-      });
 
       self.marker = new google.maps.Marker ({
         position: self.position,
         map: map,
         title: self.title,
         animation: google.maps.Animation.DROP,
+      });
+      //Create contentString for the InfoWindow
+      self.contentString = ko.computed(function(){
+        return '<div><i>'+ self.title + '</i></div>' +
+        '<div>'+ self.address + '</div>' +
+        '<div>'+ self.city +', '+ self.state +' '+ + self.zipcode + '</div>'
       });
       self.marker.addListener('click', function(){
         // console.log('clicked');
@@ -100,8 +78,6 @@ var LocationModel = function(location, viewModel) {
       });
     }
   })
-
-
 
   // self.marker.setMap(map)
 };
