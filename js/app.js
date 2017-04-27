@@ -85,12 +85,13 @@ var LocationModel = function(location, viewModel) {
         // console.log('clicked');
         console.log(this.title); //Keyword this is the marker here.
         //Set content with InfoWindow
-        // viewModel.largeInfoWindow.setContent
+        viewModel.largeInfoWindow.setContent(self.contentString());
         // Open LargeInfoWindow
+        viewModel.largeInfoWindow.open()
       });
     }
   })
-  //Create InfoWindow
+  //Create contentString for the InfoWindow
   self.contentString = '<div><i>'+ self.title + '</i></div>' +
                        '<div>'+ self.address + '</div>' +
                        '<div>'+ self.city + '</div>' +
