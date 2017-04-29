@@ -23,7 +23,6 @@ function initMap() {
     center: chicago
   });
 
-  // var largeInfoWindow = new google.maps.InfoWindow();
   var bounds = new google.maps.LatLngBounds();
 
   viewModel.google(!!window.google); //true
@@ -34,7 +33,6 @@ function chicagoListModel(favoritePlaces){
   $.getJSON("../locations.json", function(data) {
     var locationJSON = data.locations;
     console.log(locationJSON);
-    // createMarker(locationJSON);
     for(var i = 0; i < locationJSON.length; i++){
       viewModel.favoritePlaces.push(new LocationModel(locationJSON[i], viewModel));
     };
@@ -76,6 +74,9 @@ var LocationModel = function(location, viewModel) {
         // Open LargeInfoWindow
         viewModel.largeInfoWindow.open(map, self.marker);
       });
+      // this.animate.click = function(){
+
+    }
     }
   })
 
