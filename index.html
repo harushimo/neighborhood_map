@@ -14,6 +14,12 @@
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
+    <!-- <div class="dropdown">  
+      <ul class data-bind = "foreach: favoritePlaces">
+        <li data-bind = "text: title, click: ">
+        </li>
+      </ul>
+    </div> -->
     <div class="search">
       <div class="form-group">
         <div class="icon-addon addon-md">
@@ -22,7 +28,7 @@
         </div>
       </div>
       <ul class data-bind = "foreach: favoritePlaces">
-        <li data-bind = "text: title, click: ">
+        <li data-bind = "text: title">
         </li>
       </ul>
     </div>

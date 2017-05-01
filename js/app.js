@@ -74,8 +74,14 @@ var LocationModel = function(location, viewModel) {
         // Open LargeInfoWindow
         viewModel.largeInfoWindow.open(map, self.marker);
       });
-      // this.animate.click = function(){
-
+      // Wikipedia API
+      var wikiUrl = 'https://en.wikipedia.org/w/api.php?'+
+                    'action=opensearch&search=' + self.title +
+                    '&format=json&callback=wikiCallback';
+      $.ajax({
+        url: wikiUrl
+        dataType: "jsonp"
+      }).done(function())
     }
     }
   })
@@ -104,8 +110,3 @@ var ViewModel = function(LocationModel) {
 // Instiate the viewModel
 viewModel = new ViewModel();
 ko.applyBindings(viewModel);
-
-
-// // Wikipedia API
-// var wikiUrl = 'https://en.wikipedia.org/w/api.php?'
-// $.ajax({})
