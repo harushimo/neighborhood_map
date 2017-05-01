@@ -79,10 +79,11 @@ var LocationModel = function(location, viewModel) {
                     'action=opensearch&search=' + self.title +
                     '&format=json&callback=wikiCallback';
       $.ajax({
-        url: wikiUrl
+        url: wikiUrl,
         dataType: "jsonp"
-      }).done(function())
-    }
+      }).done(function(response){
+        console.log(response);
+      })
     }
   })
 
