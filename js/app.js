@@ -73,17 +73,18 @@ var LocationModel = function(location, viewModel) {
         viewModel.largeInfoWindow.setContent(self.contentString());
         // Open LargeInfoWindow
         viewModel.largeInfoWindow.open(map, self.marker);
+        // Wikipedia API
+        var wikiUrl = 'https://en.wikipedia.org/w/api.php?'+
+                      'action=opensearch&search=' + self.title +
+                      '&format=json&callback=wikiCallback';
+        $.ajax({
+          url: wikiUrl,
+          dataType: "jsonp"
+        }).done(function(response){
+          console.log(response);
+        })
       });
-      // Wikipedia API
-      var wikiUrl = 'https://en.wikipedia.org/w/api.php?'+
-                    'action=opensearch&search=' + self.title +
-                    '&format=json&callback=wikiCallback';
-      $.ajax({
-        url: wikiUrl,
-        dataType: "jsonp"
-      }).done(function(response){
-        console.log(response);
-      })
+
     }
   })
 
