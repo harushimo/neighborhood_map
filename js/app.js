@@ -69,11 +69,8 @@ var LocationModel = function(location, viewModel) {
       self.marker.addListener('click', function(){
         // console.log('clicked');
         console.log(this.title); //Keyword this is the marker here.
-        //Set content with InfoWindow
-        viewModel.largeInfoWindow.setContent(self.contentString());
-        // Open LargeInfoWindow
-        viewModel.largeInfoWindow.open(map, self.marker);
         // Wikipedia API
+
         var wikiUrl = 'https://en.wikipedia.org/w/api.php?'+
                       'action=opensearch&search=' + self.title +
                       '&format=json&callback=wikiCallback';
@@ -81,8 +78,16 @@ var LocationModel = function(location, viewModel) {
           url: wikiUrl,
           dataType: "jsonp"
         }).done(function(response){
-          console.log(response);
+          console.log(response[3][0]);
+          var article = response[3][0];
+          var url = 'http://en.wikipedia.org/wiki' + article
+          $wikiElem.append('<div><li>'+ '<a href ="'+ url +'">'+ article +'</a></li></div>');
         })
+        //Set content with InfoWindow
+        viewModel.largeInfoWindow.setContent(self.contentString());
+        // Open LargeInfoWindow
+        viewModel.largeInfoWindow.open(map, self.marker);
+
       });
 
     }
