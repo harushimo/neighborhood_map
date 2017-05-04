@@ -70,7 +70,7 @@ var LocationModel = function(location, viewModel) {
         // console.log('clicked');
         console.log(this.title); //Keyword this is the marker here.
         // Wikipedia API
-
+        // $wikiElem
         var wikiUrl = 'https://en.wikipedia.org/w/api.php?'+
                       'action=opensearch&search=' + self.title +
                       '&format=json&callback=wikiCallback';
@@ -78,16 +78,13 @@ var LocationModel = function(location, viewModel) {
           url: wikiUrl,
           dataType: "jsonp"
         }).done(function(response){
-          console.log(response[3][0]);
           var article = response[3][0];
-          var url = 'http://en.wikipedia.org/wiki' + article
-          $wikiElem.append('<div><li>'+ '<a href ="'+ url +'">'+ article +'</a></li></div>');
+          var url = '<div>'+ '<a href ="'+ article +'" target="_blank">'+ self.title +'</a></div>'
+          //Set content with InfoWindow
+          viewModel.largeInfoWindow.setContent(self.contentString() + url);
+          // Open LargeInfoWindow
+          viewModel.largeInfoWindow.open(map, self.marker);
         })
-        //Set content with InfoWindow
-        viewModel.largeInfoWindow.setContent(self.contentString());
-        // Open LargeInfoWindow
-        viewModel.largeInfoWindow.open(map, self.marker);
-
       });
 
     }
@@ -110,6 +107,7 @@ var ViewModel = function(LocationModel) {
       self.largeInfoWindow = new google.maps.InfoWindow();
     }
   });
+  // ko computed to filter search results.
 
 
 
