@@ -118,7 +118,7 @@ var ViewModel = function(LocationModel) {
     if (self.mapParameter() == null){
       return self.favoritePlaces();
     } else {
-        return ko.utils.arrayFilter
+        return ko.utils.arrayFilter(self.favoritePlaces(), function)
     }
   })
 
