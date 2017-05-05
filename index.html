@@ -14,25 +14,19 @@
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
-    <!-- <div class="dropdown">  
-      <ul class data-bind = "foreach: favoritePlaces">
-        <li data-bind = "text: title, click: ">
-        </li>
-      </ul>
-    </div> -->
-    <div class="search">
-      <div class="form-group">
-        <div class="icon-addon addon-md">
-          <input type="search" id="search" placeholder="Search for Chicago Favorite Places" class="form-control" >
-          <label for="email" class="glyphicon glyphicon-search" rel="tooltip" title="search"></label>
+    <div class="container-fluid">
+      <div class="search">
+        <div class="form-group">
+          <div class="icon-addon addon-md">
+            <input type="search" id="search" placeholder="Search for Chicago Favorite Places" class="form-control" data-bind="textInput: mapParameter, valueUpdate: 'afterkeydown">
+          </div>
         </div>
+        <ul class data-bind = "foreach: favoritePlaces">
+          <li data-bind = "text: title">
+          </li>
+        </ul>
       </div>
-      <ul class data-bind = "foreach: favoritePlaces">
-        <li data-bind = "text: title">
-        </li>
-      </ul>
     </div>
-
 
     <div id="map"></div>
     <!-- jquery CDN -->

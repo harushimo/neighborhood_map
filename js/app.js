@@ -10,8 +10,11 @@ var locations = [];
 // Other Variables
 var viewModel;
 var contentString;
-// var largeInfoWindow;
 
+// Error Handling for the Google Maps API
+function googleMapError(){
+  alert("Google Maps API isn't loading");
+}
 
 // Initialize the Google Map
 function initMap() {
@@ -86,11 +89,8 @@ var LocationModel = function(location, viewModel) {
           viewModel.largeInfoWindow.open(map, self.marker);
         })
       });
-
     }
   })
-
-  // self.marker.setMap(map)
 };
 
 // ViewModel
@@ -107,7 +107,9 @@ var ViewModel = function(LocationModel) {
       self.largeInfoWindow = new google.maps.InfoWindow();
     }
   });
-  // ko computed to filter search results.
+
+  // Search Filter
+
 
 
 
