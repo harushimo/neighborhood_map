@@ -110,6 +110,17 @@ var ViewModel = function(LocationModel) {
 
   // Search Filter
 
+  // mapParameter represents the user input into the search box
+  self.mapParameter = ko.observable();
+
+  // Search List is a filtered list of the
+  self.searchList = ko.computed(function(){
+    if (self.mapParameter() == null){
+      return self.favoritePlaces();
+    } else {
+        return ko.utils.arrayFilter
+    }
+  })
 
 
 
