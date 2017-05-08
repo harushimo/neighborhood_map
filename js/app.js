@@ -116,22 +116,11 @@ var ViewModel = function(LocationModel) {
   // Search List is a filtered list of the
   self.searchList = ko.computed(function(){
     var searchFilter = self.mapParameter();
-    if (self.mapParameter() == null){
-      return self.favoritePlaces();
-    } else {
-        return ko.utils.arrayFilter(self.favoritePlaces(), function(location){
-          if(location.title.indexOf(searchFilter) >=0) {
-            // show marker
-            console.log(location.title);
-            return true;
-            // location.show(true);
-            // location.marker.setVisible(true);
-          } else {
-              // location.show(false);
-              // location.marker.setVisible(false);
-          }
-        });
-    }
+    return ko.utils.arrayFilter(self.favoritePlaces(), function(location){
+      var locationMatch = location.title.indexOf(searchFilter) >= 0;
+      self.marker.setVisible(true);
+      return locationMatch;
+    })
   });
 
 
