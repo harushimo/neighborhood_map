@@ -120,13 +120,15 @@ var ViewModel = function(LocationModel) {
       return self.favoritePlaces();
     } else {
         return ko.utils.arrayFilter(self.favoritePlaces(), function(location){
-          if(location.name().indexOf(searchFilter) >=0) {
+          if(location.title.indexOf(searchFilter) >=0) {
             // show marker
-            location.show(true);
-            location.marker.setVisible(true);
+            console.log(location.title);
+            return true;
+            // location.show(true);
+            // location.marker.setVisible(true);
           } else {
-              location.show(false);
-              location.marker.setVisible(false);
+              // location.show(false);
+              // location.marker.setVisible(false);
           }
         });
     }
