@@ -120,10 +120,9 @@ var ViewModel = function(LocationModel) {
       var locationMatch = location.title.toLowerCase().indexOf(searchFilter) >= 0;
       if(location.marker){
         console.log(location.title + locationMatch);
-        return locationMatch;
+        location.marker.setVisible(locationMatch);
       }
-      // self.marker.setVisible(true);
-      // return locationMatch;
+      return locationMatch;
     })
   });
 
