@@ -111,15 +111,19 @@ var ViewModel = function(LocationModel) {
   // Search Filter
 
   // mapParameter represents the user input into the search box
-  self.mapParameter = ko.observable();
+  self.mapParameter = ko.observable("");
 
   // Search List is a filtered list of the
   self.searchList = ko.computed(function(){
     var searchFilter = self.mapParameter();
     return ko.utils.arrayFilter(self.favoritePlaces(), function(location){
-      var locationMatch = location.title.indexOf(searchFilter) >= 0;
-      self.marker.setVisible(true);
-      return locationMatch;
+      var locationMatch = location.title.toLowerCase().indexOf(searchFilter) >= 0;
+      if(location.marker){
+        console.log(location.title + locationMatch);
+        return locationMatch;
+      }
+      // self.marker.setVisible(true);
+      // return locationMatch;
     })
   });
 
