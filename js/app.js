@@ -115,7 +115,7 @@ var ViewModel = function(LocationModel) {
 
   // Search List is a filtered list of the
   self.searchList = ko.computed(function(){
-    var searchFilter = self.mapParameter();
+    var searchFilter = self.mapParameter().toLowerCase();
     return ko.utils.arrayFilter(self.favoritePlaces(), function(location){
       var locationMatch = location.title.toLowerCase().indexOf(searchFilter) >= 0;
       if(location.marker){
