@@ -91,10 +91,6 @@ var LocationModel = function(location, viewModel) {
         // Marker Animation
         self.marker.setAnimation(google.maps.Animation.BOUNCE);
         setTimeout (function(){self.marker.setAnimation(null);}, 750);
-        // Click binding
-        self.markerAnimator = function(location) {
-          google.maps.event.trigger(location, 'click')
-        };
       });
     }
   })
@@ -126,22 +122,17 @@ var ViewModel = function(LocationModel) {
     return ko.utils.arrayFilter(self.favoritePlaces(), function(location){
       var locationMatch = location.title.toLowerCase().indexOf(searchFilter) >= 0;
       if(location.marker){
-        console.log(location.title + locationMatch);
+        console.log(location.title, locationMatch);
         location.marker.setVisible(locationMatch);
       }
       return locationMatch;
     })
   });
 
-    // http://knockoutjs.com/documentation/click-binding.html
-    // Create the bounce and click binding
-    // location.marker.addListener('click', function() {
-    //   location.marker.setAnimation(google.maps.Animation.BOUNCE);
-    //   setTimeout (function(){location.marker.setAnimation(null);}, 750);
-    // });
-
-    // location would be the current item
-
+  // Click binding
+  self.showInfo = function(location) {
+    google.maps.event.trigger(location.marker, 'click');
+  };
 
 
 };
