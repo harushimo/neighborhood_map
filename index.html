@@ -22,13 +22,15 @@
           </div>
         </div>
         <ul class data-bind = "foreach: searchList">
-          <li data-bind = "text: title">
+          <li class = "location" data-bind = "text: title, click: $parent.markerAnimator">
           </li>
         </ul>
       </div>
     </div>
 
-    <div id="map"></div>
+    <div id="map">
+      <button type="button" name="button">Test</button>
+    </div>
     <!-- jquery CDN -->
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <!-- Knockout JS CDN -->
