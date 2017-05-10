@@ -88,6 +88,13 @@ var LocationModel = function(location, viewModel) {
           // Open LargeInfoWindow
           viewModel.largeInfoWindow.open(map, self.marker);
         })
+        // Marker Animation
+        self.marker.setAnimation(google.maps.Animation.BOUNCE);
+        setTimeout (function(){self.marker.setAnimation(null);}, 750);
+        // Click binding
+        self.markerAnimator = function(location) {
+          google.maps.event.trigger(location, 'click')
+        };
       });
     }
   })
@@ -128,15 +135,13 @@ var ViewModel = function(LocationModel) {
 
     // http://knockoutjs.com/documentation/click-binding.html
     // Create the bounce and click binding
-    location.marker.addListener('click', function() {
-      location.marker.setAnimation(google.maps.Animation.BOUNCE);
-      setTimeout (function(){location.marker.setAnimation(null);}, 750);
-    });
+    // location.marker.addListener('click', function() {
+    //   location.marker.setAnimation(google.maps.Animation.BOUNCE);
+    //   setTimeout (function(){location.marker.setAnimation(null);}, 750);
+    // });
 
     // location would be the current item
-    self.markerAnimator = function(location) {
-      google.maps.event.trigger(location, 'click')
-    };
+
 
 
 };
