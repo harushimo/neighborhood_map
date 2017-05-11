@@ -130,7 +130,7 @@ var ViewModel = function(LocationModel) {
   });
 
   // Click binding
-  self.showInfo = function(location) {
+  self.markerAnimator = function(location) {
     google.maps.event.trigger(location.marker, 'click');
   };
 
