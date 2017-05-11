@@ -18,8 +18,6 @@ function googleMapError(){
 
 // Initialize the Google Map
 function initMap() {
-  // Initialize Google maps
-  console.log("initMap");
   var chicago = {lat: 41.8781136, lng: -87.6297982}
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
@@ -70,10 +68,8 @@ var LocationModel = function(location, viewModel) {
         '<div>'+ self.city +', '+ self.state +' '+ + self.zipcode + '</div>'
       });
       self.marker.addListener('click', function(){
-        // console.log('clicked');
         console.log(this.title); //Keyword this is the marker here.
         // Wikipedia API
-        // $wikiElem
         var wikiUrl = 'https://en.wikipedia.org/w/api.php?'+
                       'action=opensearch&search=' + self.title +
                       '&format=json&callback=wikiCallback';
