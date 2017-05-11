@@ -24,12 +24,31 @@ label {
 /*Classes*/
 .search {
   width: 50%;
-  position:absolute;
-  left: 100px;
-  top: 20px;
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
 }
 
 .form-control {
   width: 50%;
   display: inline;
 }
+
+/*Media query*/
+
+/*Desktop Version*/
+
+@media only screen and (max-width: 992px){}
+
+/*Tablet Version Landscape*/
+@media only screen and (max-width: 1024px){}
+
+/*Tablet Version Portrait*/
+@media only screen and (max-width: 768px) {}
+
+/* Phone Version*/
+@media only screen and (max-width: 480px){}

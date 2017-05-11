@@ -88,6 +88,10 @@ var LocationModel = function(location, viewModel) {
         self.marker.setAnimation(google.maps.Animation.BOUNCE);
         setTimeout (function(){self.marker.setAnimation(null);}, 750);
       });
+      // Search box
+      var input = document.getElementById('searchItem');
+      var searchBox = new google.maps.places.SearchBox(input);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
     }
   })
 };
@@ -125,10 +129,7 @@ var ViewModel = function(LocationModel) {
     })
   });
 
-  // Search box
-  var input = document.getElementById('searchItem');
-  var searchBox = new google.maps.places.SearchBox(input);
-  
+
   // Click binding
   self.markerAnimator = function(location) {
     google.maps.event.trigger(location.marker, 'click');
