@@ -89,9 +89,9 @@ var LocationModel = function(location, viewModel) {
         setTimeout (function(){self.marker.setAnimation(null);}, 750);
       });
       // Search box
-      var input = document.getElementById('searchItem');
-      var searchBox = new google.maps.places.SearchBox(input);
-      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+      // var input = document.getElementById('searchItem');
+      // var searchBox = new google.maps.places.SearchBox(input);
+      // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
     }
   })
 };
