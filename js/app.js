@@ -125,6 +125,10 @@ var ViewModel = function(LocationModel) {
     })
   });
 
+  // Search box
+  var input = document.getElementById('searchItem');
+  var searchBox = new google.maps.places.SearchBox(input);
+  
   // Click binding
   self.markerAnimator = function(location) {
     google.maps.event.trigger(location.marker, 'click');

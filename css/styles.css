@@ -24,6 +24,9 @@ label {
 /*Classes*/
 .search {
   width: 50%;
+  position:absolute;
+  left: 100px;
+  top: 20px;
 }
 
 .form-control {
