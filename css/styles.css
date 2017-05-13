@@ -13,6 +13,11 @@ label {
   float: right;
 }
 
+ul{
+  padding-top: 10px;
+  list-style-type: none;
+}
+
 /* Classes */
 
 /*ID*/
@@ -23,18 +28,11 @@ label {
 
 /*Classes*/
 .search {
-  width: 50%;
-  /*background-color: #fff;
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 300;
-  margin-left: 12px;
-  padding: 0 11px 0 13px;
-  text-overflow: ellipsis;*/
+  padding-top: 10px
+
 }
 
 .form-control {
-  width: 50%;
   display: inline;
 }
 
