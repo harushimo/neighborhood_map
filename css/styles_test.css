@@ -28,11 +28,11 @@ ul{
 
 /*Classes*/
 .search {
-  width: 50%;
+  padding-top: 10px
+
 }
 
 .form-control {
-  width:50%;
   display: inline;
 }
 
