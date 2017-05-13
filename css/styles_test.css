@@ -24,7 +24,10 @@ ul{
 
 /*ID*/
 
-#wrapper #page-content-wrapper .container-fluid .row {
+#wrapper,
+#page-content-wrapper,
+.container-fluid,
+.row {
   height: 100%;
 }
 
