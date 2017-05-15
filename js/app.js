@@ -39,6 +39,8 @@ function chicagoListModel(favoritePlaces){
     for(var i = 0; i < locationJSON.length; i++){
       viewModel.favoritePlaces.push(new LocationModel(locationJSON[i], viewModel));
     }
+  }).fail(function(){
+    alert("Location Data isn't loading");
   });
 }
 
@@ -82,6 +84,11 @@ var LocationModel = function(location, viewModel) {
           var url = '<div>'+ '<a href ="'+ article +'" target="_blank">'+ self.title +'</a></div>';
           //Set content with InfoWindow
           viewModel.largeInfoWindow.setContent(self.contentString() + url);
+          // Open LargeInfoWindow
+          viewModel.largeInfoWindow.open(map, self.marker);
+        }).fail(function(){
+          //Set content with InfoWindow
+          viewModel.largeInfoWindow.setContent(self.contentString() + '<em><br>'+ "Wikipedia data isn't loading"+'</em>');
           // Open LargeInfoWindow
           viewModel.largeInfoWindow.open(map, self.marker);
         });
