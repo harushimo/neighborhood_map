@@ -13,4 +13,4 @@ To run this application
 Your port number can be anything.
 
 To access the webpage, type in the browser
-`localhost:port number/test.html`
+`localhost:port number/`

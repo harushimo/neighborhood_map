@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Best Places Around Chicago</title>
+    <!-- bootstrap style sheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="search">
+        <!-- <div class="form-group"> -->
+          <!-- <div class="icon-addon addon-md"> -->
+            <input type="search" id="searchItem" placeholder="Search for Chicago Favorite Places" class="form-control" data-bind="textInput: mapParameter, valueUpdate: 'afterkeydown'">
+          <!-- </div> -->
+        <!-- </div> -->
+        <ul class data-bind = "foreach: searchList">
+          <li class = "location" data-bind = "text: title, click: $parent.markerAnimator">
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="map">
+    </div>
+    <!-- jquery CDN -->
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <!-- Knockout JS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+    <!-- Neighborhood Map Javascript file -->
+    <script src="js/app.js" charset="utf-8"></script>
+    <!-- Google MAPS API Key -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClMXTO2UWu2tEeTHd7CI3sDN0hGe2DMvw&libraries=places&callback=initMap" type="text/javascript"></script>
+  </body>
+</html>
