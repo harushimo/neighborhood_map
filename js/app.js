@@ -1,4 +1,7 @@
-'use strict';
+(function () {
+  "use strict";
+}());
+
 
 //Initialize Variables for maps
 var map;
@@ -18,7 +21,7 @@ function googleMapError(){
 
 // Initialize the Google Map
 function initMap() {
-  var chicago = {lat: 41.8781136, lng: -87.6297982}
+  var chicago = {lat: 41.8781136, lng: -87.6297982};
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
     center: chicago
@@ -33,10 +36,9 @@ function initMap() {
 function chicagoListModel(favoritePlaces){
   $.getJSON("../locations.json", function(data) {
     var locationJSON = data.locations;
-    console.log(locationJSON);
     for(var i = 0; i < locationJSON.length; i++){
       viewModel.favoritePlaces.push(new LocationModel(locationJSON[i], viewModel));
-    };
+    }
   });
 }
 
@@ -65,10 +67,9 @@ var LocationModel = function(location, viewModel) {
       self.contentString = ko.computed(function(){
         return '<div><i>'+ self.title + '</i></div>' +
         '<div>'+ self.address + '</div>' +
-        '<div>'+ self.city +', '+ self.state +' '+ + self.zipcode + '</div>'
+        '<div>'+ self.city +', '+ self.state +' '+ self.zipcode + '</div>';
       });
       self.marker.addListener('click', function(){
-        console.log(this.title); //Keyword this is the marker here.
         // Wikipedia API
         var wikiUrl = 'https://en.wikipedia.org/w/api.php?'+
                       'action=opensearch&search=' + self.title +
@@ -78,12 +79,12 @@ var LocationModel = function(location, viewModel) {
           dataType: "jsonp"
         }).done(function(response){
           var article = response[3][0];
-          var url = '<div>'+ '<a href ="'+ article +'" target="_blank">'+ self.title +'</a></div>'
+          var url = '<div>'+ '<a href ="'+ article +'" target="_blank">'+ self.title +'</a></div>';
           //Set content with InfoWindow
           viewModel.largeInfoWindow.setContent(self.contentString() + url);
           // Open LargeInfoWindow
           viewModel.largeInfoWindow.open(map, self.marker);
-        })
+        });
         // Marker Animation
         self.marker.setAnimation(google.maps.Animation.BOUNCE);
         setTimeout (function(){self.marker.setAnimation(null);}, 750);
@@ -93,12 +94,11 @@ var LocationModel = function(location, viewModel) {
       // var searchBox = new google.maps.places.SearchBox(input);
       // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
     }
-  })
+  });
 };
 
 // ViewModel
 var ViewModel = function(LocationModel) {
-  console.log("Instiate ViewModel");
   var self = this;
   self.favoritePlaces = ko.observableArray();
   self.google = ko.observable(!!window.google);  //Sets the Google Window to False
@@ -122,11 +122,10 @@ var ViewModel = function(LocationModel) {
     return ko.utils.arrayFilter(self.favoritePlaces(), function(location){
       var locationMatch = location.title.toLowerCase().indexOf(searchFilter) >= 0;
       if(location.marker){
-        console.log(location.title, locationMatch);
         location.marker.setVisible(locationMatch);
       }
       return locationMatch;
-    })
+    });
   });
 
 
